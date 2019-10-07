@@ -1,0 +1,126 @@
+name: erlang
+base: core18
+version: '22.1'
+summary: Erlang programming language and OTP in a snap 
+description: |
+  Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability. Some of its uses are in telecoms, banking, e-commerce, computer telephony and instant messaging. Erlang's runtime system has built-in support for concurrency, distribution and fault tolerance.
+grade: devel 
+confinement: devmode 
+
+apps:
+  find:
+    command:
+      find $SNAP -type d
+      
+  sh-erl:
+    command:
+      sh -c "$SNAP/usr/scripts/exec_erl.sh $SNAP"
+  erlang:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erl"   
+  erl:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erl"   
+  erlc:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erlc"
+  dialyzer:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/dialyzer"
+  typer:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/typer"  
+  ct-run:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/ct_run"
+  escript:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/escript"
+  run-erl:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/run_erl"
+  to-erl:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/to_erl"
+  start:
+    command:
+      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/start"
+      
+  snaps:
+    command:
+      echo $SNAP_DATA
+  snaps2:
+    command:
+      echo $SNAP_COMMON_DATA
+  snaps3:
+    command:
+      echo $SNAP
+  groups:
+    command:
+      groups
+      
+passthrough:
+  layout:
+    /usr/OTP/lib/erlang:
+        bind: $SNAP/usr/OTP/lib/erlang
+
+
+parts:
+  copy-scripts:
+    source: snap/local/scripts
+    source-type: local
+    plugin: dump
+    after: [otp-erlang]
+    organize:
+      bash: usr/scripts
+    stage:
+      - usr/scripts
+    prime:
+      - usr/scripts
+    override-prime: |      
+      snapcraftctl prime
+      chmod a+x usr/scripts/exec_erl.sh
+      
+  otp-erlang:
+    plugin: autotools
+    source: http://erlang.org/download/otp_src_22.1.tar.gz
+    configflags:
+      - --prefix=/usr/OTP
+      - CFLAGS=-g -O2
+    override-build: |
+      export ERL_TOP=/usr/OTP
+      export MAKEFLAGS=-j8
+      snapcraftctl build
+    build-packages:
+      - build-essential
+      - autoconf
+      - libncurses-dev
+      - libncursesw5-dev
+      - libssh-dev
+      - libwxgtk3.0-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libpng-dev
+      - unixodbc-dev
+      - openjdk-11-jdk
+    stage:
+      - usr/OTP
+    stage-packages:
+      - libncurses-dev
+      - libncursesw5-dev
+      - libssh-dev
+      - libwxgtk3.0-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libpng-dev
+      - unixodbc-dev
+      - libssh-4
+      - libwxgtk3.0-0v5
+      - libgl1-mesa-dri
+      - libglu1-mesa
+      - libpng16-16
+      - unixodbc
+      - openjdk-11-jdk
+    prime:
+      - usr/OTP
+
