@@ -8,13 +8,6 @@ grade: devel
 confinement: devmode 
 
 apps:
-  find:
-    command:
-      find $SNAP -type d
-      
-  sh-erl:
-    command:
-      sh -c "$SNAP/usr/scripts/exec_erl.sh $SNAP"
   erlang:
     command:
       sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erl"   
@@ -46,41 +39,12 @@ apps:
     command:
       sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/start"
       
-  snaps:
-    command:
-      echo $SNAP_DATA
-  snaps2:
-    command:
-      echo $SNAP_COMMON_DATA
-  snaps3:
-    command:
-      echo $SNAP
-  groups:
-    command:
-      groups
-      
 passthrough:
   layout:
     /usr/OTP/lib/erlang:
         bind: $SNAP/usr/OTP/lib/erlang
 
-
 parts:
-  copy-scripts:
-    source: snap/local/scripts
-    source-type: local
-    plugin: dump
-    after: [otp-erlang]
-    organize:
-      bash: usr/scripts
-    stage:
-      - usr/scripts
-    prime:
-      - usr/scripts
-    override-prime: |      
-      snapcraftctl prime
-      chmod a+x usr/scripts/exec_erl.sh
-      
   otp-erlang:
     plugin: autotools
     source: http://erlang.org/download/otp_src_22.1.tar.gz
