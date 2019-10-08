@@ -69,6 +69,10 @@ parts:
       - openjdk-11-jdk
     stage:
       - usr
+      - etc
+      - lib
+      - sbin
+      - var
     stage-packages:
       - libncurses-dev
       - libncursesw5-dev
@@ -87,4 +91,8 @@ parts:
       - openjdk-11-jdk
     prime:
       - usr
+      - etc
+      - lib
+      - sbin
+      - var
 
