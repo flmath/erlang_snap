@@ -9,6 +9,9 @@ confinement: devmode
 
 apps:
   erlang:
+    environment:
+      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
     command:
       sh -c "/usr/otp_erlang/OTP/bin/erl"   
   erl:
