@@ -43,6 +43,8 @@ passthrough:
   layout:
     /usr/otp_erlang:
         bind: $SNAP/usr/otp_erlang
+    /etc:
+        bind: $SNAP/etc
 
 parts:
   otp-erlang:
@@ -67,6 +69,11 @@ parts:
       - libpng-dev
       - unixodbc-dev
       - openjdk-11-jdk
+      - libatk-adaptor
+      - libcanberra-gtk-module
+      - libcanberra-gtk3-module
+      - libatk-bridge2.0-0
+      - libgail-common
     stage:
       - usr
       - etc
@@ -89,10 +96,17 @@ parts:
       - libpng16-16
       - unixodbc
       - openjdk-11-jdk
+      - libatk-adaptor
+      - libcanberra-gtk-module
+      - libcanberra-gtk3-module
+      - libatk-bridge2.0-0
+      - libgail-common      
     prime:
       - usr
       - etc
       - lib
       - sbin
       - var
-
+    override-prime: |
+      export FONTCONFIG_PATH=/etc/fonts
+      snapcraftctl prime
