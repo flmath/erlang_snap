@@ -10,49 +10,49 @@ confinement: devmode
 apps:
   erlang:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erl"   
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/erl"   
   erl:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erl"   
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/erl"   
   erlc:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/erlc"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/erlc"
   dialyzer:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/dialyzer"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/dialyzer"
   typer:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/typer"  
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/typer"  
   ct-run:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/ct_run"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/ct_run"
   escript:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/escript"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/escript"
   run-erl:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/run_erl"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/run_erl"
   to-erl:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/to_erl"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/to_erl"
   start:
     command:
-      sh -c "/usr/OTP/lib/erlang/erts-10.5/bin/start"
+      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/start"
       
 passthrough:
   layout:
-    /usr/OTP/lib/erlang:
-        bind: $SNAP/usr/OTP/lib/erlang
+    /usr/otp_erlang/OTP/lib/erlang:
+        bind: $SNAP/usr/otp_erlang/OTP/lib/erlang
 
 parts:
   otp-erlang:
     plugin: autotools
     source: http://erlang.org/download/otp_src_22.1.tar.gz
     configflags:
-      - --prefix=/usr/OTP
+      - --prefix=/usr/otp_erlang/OTP
       - CFLAGS=-g -O2
     override-build: |
-      export ERL_TOP=/usr/OTP
+      export ERL_TOP=/usr/otp_erlang/OTP
       export MAKEFLAGS=-j8
       snapcraftctl build
     build-packages:
@@ -68,7 +68,7 @@ parts:
       - unixodbc-dev
       - openjdk-11-jdk
     stage:
-      - usr/OTP
+      - usr/otp_erlang/OTP
     stage-packages:
       - libncurses-dev
       - libncursesw5-dev
@@ -86,5 +86,5 @@ parts:
       - unixodbc
       - openjdk-11-jdk
     prime:
-      - usr/OTP
+      - usr/otp_erlang/OTP
 
