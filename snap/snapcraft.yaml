@@ -10,39 +10,39 @@ confinement: devmode
 apps:
   erlang:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/erl"   
+      sh -c "/usr/otp_erlang/OTP/bin/erl"   
   erl:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/erl"   
+      sh -c "/usr/otp_erlang/OTP/bin/erl"   
   erlc:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/erlc"
+      sh -c "/usr/otp_erlang/OTP/bin/erlc"
   dialyzer:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/dialyzer"
+      sh -c "/usr/otp_erlang/OTP/bin/dialyzer"
   typer:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/typer"  
+      sh -c "/usr/otp_erlang/OTP/bin/typer"  
   ct-run:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/ct_run"
+      sh -c "/usr/otp_erlang/OTP/bin/ct_run"
   escript:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/escript"
+      sh -c "/usr/otp_erlang/OTP/bin/escript"
   run-erl:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/run_erl"
+      sh -c "/usr/otp_erlang/OTP/bin/run_erl"
   to-erl:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/to_erl"
+      sh -c "/usr/otp_erlang/OTP/bin/to_erl"
   start:
     command:
-      sh -c "/usr/otp_erlang/OTP/lib/erlang/erts-10.5/bin/start"
+      sh -c "/usr/otp_erlang/OTP/bin/start"
       
 passthrough:
   layout:
-    /usr/otp_erlang/OTP/lib/erlang:
-        bind: $SNAP/usr/otp_erlang/OTP/lib/erlang
+    /usr/otp_erlang:
+        bind: $SNAP/usr/otp_erlang
 
 parts:
   otp-erlang:
@@ -68,7 +68,7 @@ parts:
       - unixodbc-dev
       - openjdk-11-jdk
     stage:
-      - usr/otp_erlang/OTP
+      - usr
     stage-packages:
       - libncurses-dev
       - libncursesw5-dev
@@ -86,5 +86,5 @@ parts:
       - unixodbc
       - openjdk-11-jdk
     prime:
-      - usr/otp_erlang/OTP
+      - usr
 
