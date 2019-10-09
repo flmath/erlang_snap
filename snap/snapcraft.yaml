@@ -18,7 +18,7 @@ apps:
     - wayland
     - unity7  
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/erl"   
+      sh -c "/usr/otp_erlang/OTP/bin/erl"  
   erl:
     environment:
       FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
@@ -75,7 +75,7 @@ apps:
     - desktop
     - desktop-legacy
     - wayland
-    - unity7 
+    - unity7
     command:
       sh -c "/usr/otp_erlang/OTP/bin/start"
       
@@ -85,7 +85,8 @@ passthrough:
         bind: $SNAP/usr/otp_erlang
     /etc:
         bind: $SNAP/etc
-
+    /var/lib/ucf:
+        bind: $SNAP_DATA/var/lib/ucf
 parts:
   otp-erlang:
     plugin: autotools
@@ -119,7 +120,7 @@ parts:
       - etc
       - lib
       - sbin
-      - var
+      - var/lib/ucf
     stage-packages:
       - libncurses-dev
       - libncursesw5-dev
@@ -146,7 +147,7 @@ parts:
       - etc
       - lib
       - sbin
-      - var
+      - var/lib/ucf
     override-prime: |
       export FONTCONFIG_PATH=/etc/fonts
       snapcraftctl prime
