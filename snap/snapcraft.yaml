@@ -12,9 +12,22 @@ apps:
     environment:
       FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
       FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+    plugs:
+    - desktop
+    - desktop-legacy
+    - wayland
+    - unity7  
     command:
       sh -c "/usr/otp_erlang/OTP/bin/erl"   
   erl:
+    environment:
+      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+    plugs:
+    - desktop
+    - desktop-legacy
+    - wayland
+    - unity7 
     command:
       sh -c "/usr/otp_erlang/OTP/bin/erl"   
   erlc:
@@ -33,12 +46,36 @@ apps:
     command:
       sh -c "/usr/otp_erlang/OTP/bin/escript"
   run-erl:
+    environment:
+      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+    plugs:
+    - desktop
+    - desktop-legacy
+    - wayland
+    - unity7 
     command:
       sh -c "/usr/otp_erlang/OTP/bin/run_erl"
   to-erl:
+    environment:
+      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+    plugs:
+    - desktop
+    - desktop-legacy
+    - wayland
+    - unity7 
     command:
       sh -c "/usr/otp_erlang/OTP/bin/to_erl"
   start:
+    environment:
+      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+    plugs:
+    - desktop
+    - desktop-legacy
+    - wayland
+    - unity7 
     command:
       sh -c "/usr/otp_erlang/OTP/bin/start"
       
