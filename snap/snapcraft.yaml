@@ -13,72 +13,65 @@ apps:
       FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
       FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
     plugs:
-    - desktop
-    - desktop-legacy
-    - wayland
-    - unity7  
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7  
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/erl"  
+      usr/otp_erlang/OTP/bin/erl
   erl:
     environment:
       FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
       FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
     plugs:
-    - desktop
-    - desktop-legacy
-    - wayland
-    - unity7 
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7 
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/erl"   
+      usr/otp_erlang/OTP/bin/erl
   erlc:
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/erlc"
+      usr/otp_erlang/OTP/bin/erlc
   dialyzer:
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/dialyzer"
+      usr/otp_erlang/OTP/bin/dialyzer
   typer:
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/typer"  
+      usr/otp_erlang/OTP/bin/typer  
   ct-run:
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/ct_run"
+      usr/otp_erlang/OTP/bin/ct_run
   escript:
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/escript"
+      usr/otp_erlang/OTP/bin/escript
   run-erl:
     environment:
       FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
       FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
     plugs:
-    - desktop
-    - desktop-legacy
-    - wayland
-    - unity7 
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7 
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/run_erl"
+      usr/otp_erlang/OTP/bin/run_erl
   to-erl:
     environment:
       FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
       FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
     plugs:
-    - desktop
-    - desktop-legacy
-    - wayland
-    - unity7 
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7 
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/to_erl"
-  start:
-    environment:
-      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
-      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
-    plugs:
-    - desktop
-    - desktop-legacy
-    - wayland
-    - unity7
+      usr/otp_erlang/OTP/bin/to_erl
+  epmd:
     command:
-      sh -c "/usr/otp_erlang/OTP/bin/start"
-      
+      usr/otp_erlang/OTP/bin/epmd
+  
+
 passthrough:
   layout:
     /usr/otp_erlang:
