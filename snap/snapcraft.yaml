@@ -16,18 +16,20 @@ apps:
       - desktop
       - desktop-legacy
       - wayland
-      - unity7  
+      - unity7
+      - network 
     command:
       usr/otp_erlang/OTP/bin/erl
   erl:
     environment:
-      FONTCONFIG_PATH: $SNAP/etc/fonts/conf.d
-      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+      FONTCONFIG_PATH: /etc/fonts/conf.d
+      FONTCONFIG_FILE: /etc/fonts/fonts.conf
     plugs:
       - desktop
       - desktop-legacy
       - wayland
-      - unity7 
+      - unity7
+      - network       
     command:
       usr/otp_erlang/OTP/bin/erl
   erlc:
@@ -40,6 +42,12 @@ apps:
     command:
       usr/otp_erlang/OTP/bin/typer  
   ct-run:
+    plugs:
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - network       
     command:
       usr/otp_erlang/OTP/bin/ct_run
   escript:
@@ -64,22 +72,37 @@ apps:
       - desktop
       - desktop-legacy
       - wayland
-      - unity7 
+      - unity7
+      - network       
     command:
       usr/otp_erlang/OTP/bin/to_erl
   epmd:
+    plugs:
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - network       
     command:
       usr/otp_erlang/OTP/bin/epmd
-  
+  get-sh:
+    plugs:
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - network 
+    command:
+      sh
 
 passthrough:
   layout:
     /usr/otp_erlang:
         bind: $SNAP/usr/otp_erlang
-    /etc:
-        bind: $SNAP/etc
     /var/lib/ucf:
         bind: $SNAP_DATA/var/lib/ucf
+    /etc/fonts:
+        bind: $SNAP_DATA/etc/fonts
 parts:
   otp-erlang:
     plugin: autotools

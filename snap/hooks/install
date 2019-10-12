@@ -3,4 +3,10 @@
 # https://github.com/anonymouse64/device-grove-c/commit/03fca251f6fdfd48bb6e7fc6cbfdc07392039363
 
 mkdir -p ${SNAP_DATA}/var/lib
+mkdir -p ${SNAP_DATA}/etc/fonts
+
+
 cp -rf ${SNAP}/var/lib/ucf ${SNAP_DATA}/var/lib
+cp -rf /etc/fonts ${SNAP_DATA}/etc/fonts
+
+
